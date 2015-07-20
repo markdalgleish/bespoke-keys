@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/markdalgleish/bespoke-keys.png?branch=master)](https://travis-ci.org/markdalgleish/bespoke-keys) [![Coverage Status](https://coveralls.io/repos/markdalgleish/bespoke-keys/badge.png)](https://coveralls.io/r/markdalgleish/bespoke-keys)
+[![Build Status](https://secure.travis-ci.org/markdalgleish/bespoke-keys.png?branch=master)](https://travis-ci.org/markdalgleish/bespoke-keys) [![Coverage Status](https://coveralls.io/repos/markdalgleish/bespoke-keys/badge.png)](https://coveralls.io/r/markdalgleish/bespoke-keys) ![](https://david-dm.org/markdalgleish/bespoke-keys.svg)
 
 # bespoke-keys
 
