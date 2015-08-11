@@ -7,18 +7,19 @@ describe("bespoke-keys", function() {
     keys = require('../../lib-instrumented/bespoke-keys.js');
 
   var deck,
-
+    inputBox = null,
     createDeck = function(optionValue) {
       var parent = document.createElement('article');
-      parent.innerHTML = '<section></section><section></section>';
+      parent.innerHTML = '<section><input type="text"></section><section></section>';
+      inputBox = parent.querySelector('input');
 
       deck = bespoke.from(parent, [
         keys(optionValue)
       ]);
     },
 
-    pressKey = function(which, isShift) {
-      simulant.fire(document, 'keydown', { which: which, shiftKey: !!isShift });
+    pressKey = function(which, isShift, element) {
+      simulant.fire((element || document), 'keydown', { which: which, shiftKey: !!isShift });
     };
 
   describe("horizontal deck", function() {
@@ -46,6 +47,10 @@ describe("bespoke-keys", function() {
             expect(deck.slide()).toBe(1);
           });
 
+          it("should not go to the next slide when pressing the space bar in an input field", function() {
+            pressKey(32, false, inputBox);
+            expect(deck.slide()).toBe(0);
+          });
         });
 
         describe("previous slide", function() {
