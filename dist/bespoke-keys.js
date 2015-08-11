@@ -1,5 +1,5 @@
 /*!
- * bespoke-keys v1.0.0
+ * bespoke-keys v1.1.0
  *
  * Copyright 2015, Mark Dalgleish
  * This content is released under the MIT license
@@ -17,8 +17,7 @@ module.exports = function(options) {
         (isHorizontal && e.which == 39) || // RIGHT
         (!isHorizontal && e.which == 40) // DOWN
       ) { deck.next(); }
-
-      if (e.which == 33 || // PAGE UP
+      else if (e.which == 33 || // PAGE UP
         (e.which == 32 && e.shiftKey) || // SPACE + SHIFT
         (isHorizontal && e.which == 37) || // LEFT
         (!isHorizontal && e.which == 38) // UP
