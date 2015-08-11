@@ -1,9 +1,9 @@
 describe("bespoke-keys", function() {
 
   Function.prototype.bind = Function.prototype.bind || require('function-bind');
-  require('simulant/simulant');
 
-  var bespoke = require('bespoke'),
+  var simulant = require('simulant'),
+    bespoke = require('bespoke'),
     keys = require('../../lib-instrumented/bespoke-keys.js');
 
   var deck,
