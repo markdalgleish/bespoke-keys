@@ -1,24 +1,27 @@
 describe("bespoke-keys", function() {
 
   Function.prototype.bind = Function.prototype.bind || require('function-bind');
-  require('simulant/simulant');
 
-  var bespoke = require('bespoke'),
-    keys = require('../../lib-instrumented/bespoke-keys.js');
+  var simulant = require('simulant'),
+    bespoke = require('bespoke'),
+    keys = require('../../lib-instrumented/bespoke-keys.js'),
+    forms = require('bespoke-forms');
 
   var deck,
-
+    inputBox = null,
     createDeck = function(optionValue) {
       var parent = document.createElement('article');
-      parent.innerHTML = '<section></section><section></section>';
+      parent.innerHTML = '<section><input type="text"></section><section></section>';
+      inputBox = parent.querySelector('input');
 
       deck = bespoke.from(parent, [
-        keys(optionValue)
+        keys(optionValue),
+        forms(optionValue)
       ]);
     },
 
-    pressKey = function(which, isShift) {
-      simulant.fire(document, 'keydown', { which: which, shiftKey: !!isShift });
+    pressKey = function(which, isShift, element) {
+      simulant.fire((element || document), 'keydown', { which: which, shiftKey: !!isShift });
     };
 
   describe("horizontal deck", function() {
@@ -44,6 +47,11 @@ describe("bespoke-keys", function() {
           it("should go to the next slide when pressing page down", function() {
             pressKey(34);
             expect(deck.slide()).toBe(1);
+          });
+
+          it("should not go to the next slide when pressing the space bar in an input field", function() {
+            pressKey(32, false, inputBox);
+            expect(deck.slide()).toBe(0);
           });
 
         });
