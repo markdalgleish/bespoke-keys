@@ -49,6 +49,11 @@ describe("bespoke-keys", function() {
             expect(deck.slide()).toBe(1);
           });
 
+          it("should not go to the next slide when pressing the right arrow with shift pressed", function() {
+            pressKey(39, true);
+            expect(deck.slide()).toBe(0);
+          });
+
           it("should not go to the next slide when pressing the space bar in an input field", function() {
             pressKey(32, false, inputBox);
             expect(deck.slide()).toBe(0);
@@ -75,6 +80,16 @@ describe("bespoke-keys", function() {
           it("should go to the previous slide when pressing the shift and space bar", function() {
             pressKey(32, true);
             expect(deck.slide()).toBe(0);
+          });
+
+          it("should not go to the previous slide when pressing the left arrow with shift pressed", function() {
+            pressKey(37, true);
+            expect(deck.slide()).toBe(1);
+          });
+
+          it("should not go to the previous slide when pressing the shift and space bar in an input field", function() {
+            pressKey(32, true, inputBox);
+            expect(deck.slide()).toBe(1);
           });
 
         });
